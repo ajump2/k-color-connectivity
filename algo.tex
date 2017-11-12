@@ -1,0 +1,50 @@
+\documentclass[11pt, oneside]{article}   	% use "amsart" instead of "article" for AMSLaTeX format
+\usepackage{geometry}                		% See geometry.pdf to learn the layout options. There are lots.
+\geometry{letterpaper}                   		% ... or a4paper or a5paper or ... 
+%\geometry{landscape}                		% Activate for rotated page geometry
+%\usepackage[parfill]{parskip}    		% Activate to begin paragraphs with an empty line rather than an indent
+\usepackage{graphicx}				% Use pdf, png, jpg, or eps§ with pdflatex; use eps in DVI mode
+								% TeX will automatically convert eps --> pdf in pdflatex		
+\usepackage{amssymb,amsmath,mathtools,algorithm,mathrsfs,algorithmicx,algpseudocode}
+\begin{document}
+
+\begin{algorithm}[H]
+\begin{algorithmic}[1]
+\Procedure{}{}
+\Ensure DetourMatrix,ChromaticDetourMatrix
+\Ensure  $\leftarrow G$
+\State Let $k$ be the detour radius of the graph, and $CK = \{1,\dots, 2k-1\}$
+Generate all paths, $P_{k}$ of the form $\{(a,b):P\}$ where each entry is the edges of that path, of length $k$ or greater with keys representing start and target nodes
+find a path, $P$, of length exactly $k$, give each $e_{i}\in E(P)$ a color $i \in \{1,\dots,k\} \subset CK$
+Let $K=E(P)$, if $\lvert (a,b):x\in P_{k} \cup K\rvert = \lvert x \rvert$ then $K \subset x$ and $P_{k} \ (a,b)$. This means that all vertex pairs containing $P$ are $k$-color connected by default.
+
+Function 1:
+From the now modified $P_{k}$ we take each $(a,b):x$ and perform $x - K$, as those edges are already colored and depended upon. However, we also want to take note of the colors in $C = c(x \cap K)$, as $x$ already contains these colors. Finally we give x the value x:C. Now each entry of $P_{k}$ takes the form $(a,b):x:C$.
+
+Step 2:
+Initialize,
+Filter $P_{k}$ by $\lvert x \rvert + \lvert C \rvert = k$, let this set be $H$.
+
+Stage 1:
+While $H \not = \{\}$
+For some $(a,b):y$ and all $(c,d):x$ in $H$,
+
+Module 1:
+Output <- $H$
+given all $e_{i} \text{ to } e_{j} \in y$, assign a color from $\ell \in CO = CK - C$ and $y:C \cup \ell$ also $e_{i}:\ell$.
+
+Search 1: Input <- $y$,$CO$
+Output <- $H$,$CO$
+If for all $x\in H$ $y \cap x \not = \{\}$ then check $\lvert y:C \cup x:C\rvert = \lvert x:C \rvert + \lvert y \cap x \rvert$; else we continue our search. In other words we want each path in $H$ to see if this additional edge coloring works, as each edge representation of paths in $H$ must have a one-to-one correspondence with its colors.
+If the last step fails, then we know we need to use another color for some entry or entries, $e_{h}$, of $y \cap x$. For some $e_{h}:\ell_{u} \in x:C$, we take $CO - e_{h}:\ell_{u}$ and assign each $e_{h}$ a new color from $CO$, also remove $e_{h}:\ell_{u}$ from $y:C$ and add in the new colors. Call Search 1 with the new $y$ and $CO$ again until halt.
+If Search 1 halts, for all $x$, $x-y$ and $x:C \cup y:C$, remove $(a,b)$ correspondingto $y$ from $H$.
+End Search 1
+End Module 1
+End For
+End While
+
+For all vertex pairs, a path of length exactly $k$ should now have $k$ colors. Compute the chromatic detour matrix, $\Delta_{k}$, of $G$ and take the minimum chromatic detour number (MCDN). If the MCDN $\geq k$, then $G$ is $k$-color connected and the program halts.
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
+\end{document}
