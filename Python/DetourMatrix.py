@@ -1,3 +1,6 @@
+#DetourMatrix.py
+#Calculates the Detour Matrix for a given graph
+#Returns detour matrix, and all computed paths
 import networkx as nx
 import itertools
 import numpy as np

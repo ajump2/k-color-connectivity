@@ -1,3 +1,5 @@
+#DetourColoring.py
+#Non-functioning code, see algo.tex for pseudo
 import networkx as nx
 import numpy as np
 import itertools

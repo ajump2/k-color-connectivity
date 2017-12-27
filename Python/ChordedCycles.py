@@ -1,3 +1,5 @@
+#ChordedCycles.py
+#Use python ChordedCycles <number of vertices> <number of chords>
 import networkx as nx
 import itertools
 import numpy as np
