@@ -16,7 +16,8 @@ def main():
     ch = int(sys.argv[1:][1])
 
     #Change Directories to suit your needs
-    wDir = str(os.getcwd())
+    graphDir = '/graphml_files/'
+    wDir = str(os.getcwd()) + graphDir
     wFile = "-color-connected-graph-C_"+str(n)+"_"+str(ch)+"/"
     FileExt = ".graphml"
     
