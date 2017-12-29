@@ -1,7 +1,3 @@
-library(devtools)
-install_github("muschellij2/latexreadme")
-library(latexreadme)
-
 # Introduction
 Contains some initial work on edge colorings for detour length paths. Thus far, we successfully check for $k$-color connectivity, determine minimum detour numbers, and view chord additions as permutations of distance between chord incident vertices. Thus far, and algorithmic approach to minimally $k$-color connecting a graph has not been implemented, and the proposed solution cannot be determined to halt unless the $k$-color connection number of any graph is less than $2k-1$.
 
