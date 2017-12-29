@@ -1,0 +1,46 @@
+\documentclass[11pt, oneside]{article}   	
+\usepackage{geometry}                		
+\geometry{letterpaper}                   		
+\usepackage{amssymb,amsmath,mathtools,algorithm,mathrsfs,algorithmicx,algpseudocode}
+\usepackage{letltxmacro}	
+\usepackage{amssymb}
+
+
+\begin{document}
+
+\begin{algorithm}[H]
+\begin{algorithmic}[1]
+\small
+\caption{Proposed Edge Coloring}
+\Procedure{}{}
+\Ensure  $G$
+\State Let $k$ be $\min{(\Delta(G))}$, and $C_{k} = \{1,\dots, 2k-1\}$
+\For{$E'(G) \in E(G)$}
+\If{$E'(G)$ and $\lvert E'(G)\rvert \geq k$ and $E'(G)$ is a $uv$-path}
+\State $P_{k} \leftarrow P_{k} \cup \{(u,v):E'(G)\}$
+\EndIf
+\EndFor
+\State $K \leftarrow [x \text{ for } x \text{ in } P_{k} \text{ if } x = k]$
+\State $K \backslash (u,v):\{\}$
+%\Comment{some vertex pairs have paths longer than $k$ but no path of length $k$}
+\State $X\in K; f: X \rightarrow X:C(X)$
+%\Comment{such that $\lvert C(X)\rvert = k$.}
+\State $e \in X, Y\not = X; Y\backslash \{e\}$
+%$\Comment{we remove the now colored edges from the remaining sets, keeping $C(Y)$ preserved.}
+\State $C_o \leftarrow C_{k} - C(X)$
+\While{$K \not = \{\}$}
+\For{$(u,v):A$ and all $(x,y):B$ in $K$}
+\State $e_{i} \text{ to } e_{j} \in A$, $\ell{(e_{h})} \in C_o$, and $C(A) \cup \ell$
+\If{$A \cap B \not = \{\}$} 
+\If{$\lvert C(A) \cup C(B)\rvert = \lvert C(B) \rvert + \lvert A \cap B \rvert$}
+\State $e_{h} \leftarrow c\in (C_{o} - C(e_{h}))$, 
+\State $(C(A)-C(e_{h})) \cup C(e_{h})$
+\EndIf
+\EndIf
+%\Comment{Search needs to be repeated if recoloring takes place}
+\EndFor
+\EndWhile
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
+\end{document}  
