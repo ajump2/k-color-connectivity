@@ -11,4 +11,4 @@ While technically out of the scope of the project, I explored some different ave
 
 ![](https://latex.codecogs.com/svg.latex?C_{10}) where ![](https://latex.codecogs.com/svg.latex?k=6) | ![](https://latex.codecogs.com/svg.latex?C_{11}) where ![](https://latex.codecogs.com/svg.latex?k=7) | ![](https://latex.codecogs.com/svg.latex?C_{12}) where ![](https://latex.codecogs.com/svg.latex?k=7)
 :-----------------------:|:-----------------------:|:-----------------------:
-![Alt Text](https://github.com/ajump2/k-color-connectivity/raw/master/Images/arrayC10K6.tif "C10K6")| ![Alt Text](https://github.com/ajump2/k-color-connectivity/raw/master/Images/arrayC11K7.tif "C11K7") | ![Alt Text](https://github.com/ajump2/k-color-connectivity/raw/master/Images/arrayC12K7.tif "C12K7")
+![Alt Text](https://github.com/ajump2/k-color-connectivity/raw/master/Images/arrayC10K6-0.png "C10K6")| ![Alt Text](https://github.com/ajump2/k-color-connectivity/raw/master/Images/arrayC11K7-0.png "C11K7") | ![Alt Text](https://github.com/ajump2/k-color-connectivity/raw/master/Images/arrayC12K7-0.png "C12K7")
