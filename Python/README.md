@@ -1,5 +1,5 @@
 ## Installation
-
+Currently works on both OSX and Linux.
 ```{r, engine='bash', count_lines}
 source graphs/bin/activate
 ```
