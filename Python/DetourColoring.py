@@ -42,7 +42,7 @@ def updateColors(d,key,index,newColors):
 
 #For debugging
 def mapWhat(x):
-    print x
+    print( x)
 
 def updateValues(x):
     getItems = lambda x:x.items()
@@ -59,29 +59,29 @@ def SearchFunction(y):
     for a in KPaths:
         for b in KPaths[a]:
             val = {q:y[q] for q in y if q in b}
-            #print val
+            #print( val)
             b.update(val)
             #def ReColor:
-    #print KPaths
+    #print( KPaths)
     for a in KPaths:
         for b in KPaths[a]:
-            #print b
+            #print( b)
             vals = {x for x in b.values() if type(x)==int}
             vals = set(vals) - set([0])
-            #print vals
+            #print( vals)
             del b["colors"]
             b.update({"colors":vals})
-            #print b
+            #print( b)
 
 def updateEdgeAndColors(edge,color,numOfColors):
     for i in KPaths.values():
-        print i
+        print(i)
         for j in i:
-            print edges
+            print(edges)
             if edge in j and "colors" in j:
                 if color in j["colors"] or edge in edges:
-                    print color
-                    print "that color is already on the path"
+                    print(color)
+                    print("that color is already on the path")
                     return False
                 FormCol = j["colors"]
                 FormCol |= set([color])
@@ -89,7 +89,7 @@ def updateEdgeAndColors(edge,color,numOfColors):
                 j.update({edge:color})
                 return True
             elif not edge in edges and numOfColors < k:
-                print "this edge needs a new color"
+                print("this edge needs a new color")
                 newColors=CK-set(edges.values())
                 j.update({edge:list(newColors)[0]})
                 return True
@@ -108,52 +108,52 @@ def removeEdges(dic):
     
 def IterateColors():
     firstPath = KPaths.values()[0][0]
-    print ""
-    print "the paths"
+    print("")
+    print("the paths")
     for i in KPaths.values()[0]:
-        print i
-    print ""
-    print "looking at vertex pair:"
-    print KPaths.keys()[0]
-    print ""
+        print(i)
+    print("")
+    print("looking at vertex pair:")
+    print( KPaths.keys()[0])
+    print( "")
     pathcolors = firstPath["colors"]
-    print "colors on the path"
+    print( "colors on the path")
     if len(pathcolors)>=k:
-        print "k colors already between these vertices"
+        print( "k colors already between these vertices")
         return
-    print pathcolors
-    print ""
+    print( pathcolors)
+    print( "")
     del firstPath["colors"]
     global inc
     
     for i in firstPath:
         inc = 0
-        print ""
-        print "We're looking at edge:"
-        print i
-        print ""
+        print( "")
+        print( "We're looking at edge:")
+        print( i)
+        print( "")
         colorset = CK
-#        print list(CK-pathcolors)
+#        print( list(CK-pathcolors))
         consideredcolor = list(
             CK-pathcolors
         )[0]
         while not updateEdgeAndColors(i,consideredcolor,len(pathcolors)):
-            print "entering the loop"
-            print list(colorset-pathcolors)
-            print inc
-            #print pathcolors
+            print( "entering the loop")
+            print( list(colorset-pathcolors))
+            print( inc)
+            #print( pathcolors)
             consideredcolor = list(
                 colorset-pathcolors
             )[inc]
             inc += 1
         for j in KPaths.values():
             for h in j:
-                print h
+                print( h)
                 if "colors" in h and i in h:
                     if not consideredcolor in h["colors"]:
-                        print "the considered color"
-                        print consideredcolor
-                        print "updating colors"
+                        print( "the considered color")
+                        print( consideredcolor)
+                        print( "updating colors")
                         h.update({i:consideredcolor})
                         h.update({"colors":h["colors"] | set([consideredcolor])})
                         edges.update({i:h[i]})
@@ -161,14 +161,14 @@ def IterateColors():
                     else:
                         #updateEdgeAndColors(i,consideredcolor,inc)
                         """
-                        print "the considered color"
-                        print consideredcolor
-                        print "updating colors"
+                        print( "the considered color")
+                        print( consideredcolor)
+                        print( "updating colors")
                         h.update({i:consideredcolor})
                         h.update({"colors":h["colors"] | set([consideredcolor])})
                         edges.update({i:h[i]})
                         del h[i]
-                        #print h
+                        #print( h)
                         """
         firstPath.update({i:consideredcolor})
         inc += 1
@@ -184,7 +184,7 @@ def main():
     g = nx.cycle_graph(5)
     nodes = g.nodes()
     global vertexPairs
-    #print(g.edges())
+    #print((g.edges()))
     vertexPairs = list(
         itertools.combinations(
             nodes,
@@ -192,7 +192,7 @@ def main():
         )
     )
 
-    print vertexPairs
+    print( vertexPairs)
     
     global k
     k,P = dm.detour_matrix(g)
@@ -203,7 +203,7 @@ def main():
             2*k
         )
     )
-    #print 2*k-1
+    #print( 2*k-1)
 
     #generates edges as well as a color set
     dictMap = lambda y : [
@@ -218,7 +218,7 @@ def main():
     }
     
     #for i in P_K.values():
-    #    print i
+    #    print( i)
     #KPaths refers to the paths without k colors later on
     global KPaths
     KPaths = {x:map(
@@ -234,9 +234,9 @@ def main():
         newDict = dict()
         newList = list()
         for a in y:
-            #print a
+            #print( a)
             for b in a:
-                #print b
+                #print( b)
                 newList.append(
                     dict(
                         zip(
@@ -281,7 +281,7 @@ def main():
     global conP
     conP = 1
     def consideredPaths(path):
-        #print setOfPaths
+        #print( setOfPaths)
         edges.update(path)
         KPathsIte = KPaths.keys()
         setOfPaths = KPaths.values()
@@ -305,7 +305,7 @@ def main():
                 )
             )
             firstpath.update({"colors":setOfPaths[0][0]["colors"]})
-            #print firstpath
+            #print( firstpath)
             KPaths[KPathsIte[0]][0].update(firstpath)
         else:
             firstpath = dict(
@@ -314,7 +314,7 @@ def main():
                     list(range(1,k+1))
                 )
             )
-        #print KPaths
+        #print( KPaths)
         if conP:
            global conP
            conP = 0
@@ -326,25 +326,25 @@ def main():
                         getValues,
                         q
                     ) for q in setOfPaths for p in q if not 0 in getValues(p)]
-                #print nonZeroDict
-                #print colorSet
+                #print( nonZeroDict)
+                #print( colorSet)
                 for i in range(len(nonZeroDict)):
                     for j in range(len(nonZeroDict[i])):
                         nonZeroDict[i][j].update(colorSet[i][j])
-            #print KPaths
-            #print nonZeroDict
-            #print colorSet
+            #print( KPaths)
+            #print( nonZeroDict)
+            #print( colorSet)
                 updatedDict = dict(
                     zip(
                             KPaths.keys(),
                             nonZeroDict
                         )
                     )
-               #print updatedDict
+               #print( updatedDict)
                 KPaths.update(updatedDict)
                 for a in KPaths:
                     for b in KPaths[a]:
-                        #print b
+                        #print( b)
                         if b.get("colors") == None:
                             b.update({"colors":set()})
                         elif b.get("colors") == set([0]):
@@ -352,19 +352,19 @@ def main():
                         else:
                             continue
             #KPaths.update({KPaths.keys()[0]:path})
-        #print KPaths[KPaths.keys()[0]][0]
-        #print path["colors"]
+        #print( KPaths[KPaths.keys()[0]][0])
+        #print( path["colors"])
         #if not conP:
-            #print KPaths
+            #print( KPaths)
         
         SearchFunction(path)
 
-    #print updatedDict
+    #print( updatedDict)
 
     consideredPaths(firstpath)
-    #print KPaths
+    #print( KPaths)
     #SearchFunction(firstpath)
-    #print KPaths
+    #print( KPaths)
     
     #Initialization
     global VerticesWithkColors
@@ -381,7 +381,7 @@ def main():
             for b in KPaths[x]:
                 bCol = b["colors"]
                 bNew =  {p:0 for p in b if b[p] == 0}
-                #print bNew
+                #print( bNew)
                 b.clear()
                 b.update({"colors":bCol})
                 b.update(bNew)
@@ -389,30 +389,30 @@ def main():
                 
     filterByNoColors()
     for i in KPaths:
-        print i
-    print ""
-    print "The edges with colors"
-    print ""
-    print edges
-    print ""
+        print( i)
+    print( "")
+    print( "The edges with colors")
+    print( "")
+    print( edges)
+    print( "")
     while KPaths:
         IterateColors()
-      #  print VerticesWithkColors
+      #  print( VerticesWithkColors)
         UpdateVertices()
-    print ""
-    print "The vertices with k colors"
-    print ""
+    print( "")
+    print( "The vertices with k colors")
+    print( "")
     for i in VerticesWithkColors:
-        print i
-        print VerticesWithkColors[i]
-    #print KPaths
+        print( i)
+        print( VerticesWithkColors[i])
+    #print( KPaths)
     finalEdgeColors = dict([])
     for i in VerticesWithkColors:
         for j in range(len(VerticesWithkColors[i])):
             finalEdgeColors.update(VerticesWithkColors[i][j])
 
-    #print finalEdgeColors
-    print ""
-    print edges
+    #print( finalEdgeColors)
+    print( "")
+    print( edges)
 if __name__ == "__main__":
     main()
